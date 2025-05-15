@@ -4,6 +4,7 @@ import in.project.billingSoftware.entity.CategoryEntity;
 import in.project.billingSoftware.io.CategoryRequest;
 import in.project.billingSoftware.io.CategoryResponse;
 import in.project.billingSoftware.repository.CategoryRepository;
+import in.project.billingSoftware.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final FileUploadService fileUploadService;
+    private final ItemRepository itemRepository;
     @Override
     public CategoryResponse add(CategoryRequest request, MultipartFile file) {
     	String imgUrl = fileUploadService.uploadFile(file);
@@ -29,6 +31,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     private CategoryResponse convertToResponse(CategoryEntity newCategory) {
+		Integer itemCount=itemRepository.countByCategoryId(newCategory.getId());
+		// Convert CategoryEntity to CategoryResponse
        return CategoryResponse.builder()
                 .categoryId(newCategory.getCategoryId())
                 .name(newCategory.getName())
@@ -37,6 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .createdAt(newCategory.getCreatedAt())
                 .updatedAt(newCategory.getUpdatedAt())
                 .imgUrl(newCategory.getImgUrl())
+                .items(itemCount)
                 .build();
 
     }
