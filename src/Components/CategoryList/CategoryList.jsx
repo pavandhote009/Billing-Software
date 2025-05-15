@@ -32,10 +32,7 @@ function CategoryList() {
 
   
   // Count items per category (you'll need to implement this based on your data)
-  const countItemsInCategory = (categoryId) => {
-    // This is a placeholder - implement based on your actual data structure
-    return 0;
-  };
+ 
 
   return (
     <div className="flex flex-col h-full bg-slate-800 gap-4 p-4 rounded-lg shadow-lg">
@@ -98,7 +95,7 @@ function CategoryList() {
                     {category.name}
                   </span>
                   <span className='text-xs text-gray-300'>
-                    Items: {countItemsInCategory(category.categoryId)}
+                    {category.items} Items
                   </span>
                 </div>
               </div>
@@ -118,9 +115,6 @@ function CategoryList() {
   );
 }
 
-CategoryList.propTypes = {
-  onCategorySelect: PropTypes.func,
-  onDeleteCategory: PropTypes.func,
-};
+
 
 export default CategoryList;
