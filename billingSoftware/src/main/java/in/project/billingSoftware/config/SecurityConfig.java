@@ -39,7 +39,8 @@ public class SecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/login", "/encode").permitAll()
-						.requestMatchers("/categories", "/items").hasAnyRole("ADMIN", "USER")
+						 .requestMatchers("/uploaded-files/**").permitAll()
+						.requestMatchers("/categories", "/items","/orders","/payments").hasAnyRole("ADMIN", "USER")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.anyRequest().authenticated())
 				.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -62,7 +63,7 @@ public class SecurityConfig {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowedOrigins(List.of("http://localhost:5173")); // Update with your frontend URL
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-		config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+		config.setAllowedHeaders(List.of("Authorization","Content-Disposition","Accept", "Content-Type"));
 		config.setAllowCredentials(true);
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
