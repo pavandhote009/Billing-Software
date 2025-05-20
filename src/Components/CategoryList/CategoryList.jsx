@@ -74,9 +74,9 @@ function CategoryList() {
                  
                     
                     <img
-                      src={`http://localhost:8080/${category.imgUrl}`}
+                      src={`http://localhost:8080/api/v1.0/${category.imgUrl}`}
                       alt={category.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = "/src/assets/logo.png";

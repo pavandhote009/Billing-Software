@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../../Context/AppContext';
 
 function Menubar() {
+  const navigate = useNavigate();
+  const {setAuthData}=useContext(AppContext);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
 
@@ -11,6 +15,14 @@ function Menubar() {
 
   const toggleLoginDropdown = () => {
     setIsLoginDropdownOpen(!isLoginDropdownOpen);
+  };
+  const logOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    setAuthData(null, null);
+    navigate('/login');
+
+   
   };
 
   return (
@@ -47,17 +59,41 @@ function Menubar() {
 
         
         <div className="flex items-center md:space-x-4">
-          <div className="relative">
-            <button 
-              onClick={toggleLoginDropdown}
-              type="button" 
-              className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-400 dark:bg-violet-600 text-gray-900 dark:text-gray-50"
-            >
-              Log in
-              <svg className="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
+        <div className="flex items-center md:space-x-4">
+  {/* Profile Image Dropdown */}
+  <div className="relative">
+    <button 
+      onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+      className="flex items-center focus:outline-none"
+    >
+      <img 
+        className="w-8 h-8 rounded-full" 
+        src="src/assets/profile.jpg" 
+        alt="User profile"
+      />
+      <svg 
+        className={`w-4 h-4 ml-1 transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+    
+    {isProfileDropdownOpen && (
+      <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="py-1">
+          <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Your Profile</a>
+          <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+          <a href="#" onClick={logOut} className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Log out</a>
+        </div>
+      </div>
+    )}
+  </div>
+
+</div>
             
             {isLoginDropdownOpen && (
               <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
@@ -81,7 +117,8 @@ function Menubar() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
           </svg>
         </button>
-      </div>
+      
+     
       
       {/* Mobile menu */}
       {isMobileMenuOpen && (

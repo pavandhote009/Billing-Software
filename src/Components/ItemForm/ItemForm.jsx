@@ -66,7 +66,7 @@ function ItemForm() {
   }
 
   return (
-    <div className="max-w-xs mx-auto h-full p-2">
+    <div className="max-w-full mx-auto h-full p-2">
       <div className="bg-white text-black rounded-lg shadow-md p-4">
         <form onSubmit={handleSubmit}>
           {/* Image Upload */}

@@ -59,11 +59,11 @@ function ItemList() {
           {filteredItems.map((item) => (
             <div key={item.itemId} className='w-full bg-slate-700 border border-gray-600 text-white p-3 rounded-lg hover:bg-slate-600 transition-colors'>
               <div className='flex justify-between items-center gap-4'>
-                <div className="w-16 h-16 rounded-md overflow-hidden bg-gray-800 flex-shrink-0">
+                <div className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
                   <img 
-                    src={item.imgUrl || '/src/assets/logo.png'} 
+                    src={`http://localhost:8080/api/v1.0/${item.imgUrl || '/src/assets/logo.png'}`} 
                     alt={item.name} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className='flex-1 min-w-0'>

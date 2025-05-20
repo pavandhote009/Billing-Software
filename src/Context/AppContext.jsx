@@ -8,10 +8,31 @@ export const AppContextProvider=(props)=>{
         const [Categories,setCategories]=React.useState([])
         const [itemsData, setItemsData] =useState([])
         const [auth, setAuth] = React.useState({token:null, role:null});
+        const [cartItems, setCartItems] = useState([]);
           
+
+        const addToCart=(item)=>{
+           const existingItem= cartItems.find(cartItem=> cartItem.name===item.name)
+           if(existingItem){
+            setCartItems(cartItems.map(cartItem=> cartItem.name===item.name?{...cartItem, quantity:cartItem.quantity+1}:cartItem))
+           }else{
+            setCartItems([...cartItems, {...item, quantity:1}])
+           }
+        }
+
+        const removeFromCart=(itemId)=>{
+            setCartItems(cartItems.filter(cartItem=> cartItem.itemId!==itemId))
+        }
+
+        const updateQuantity=(itemId, newQuantity)=>{
+            setCartItems(cartItems.map(cartItem=> cartItem.itemId===itemId?{...cartItem, quantity:newQuantity}:cartItem))
+        }
             
         useEffect(()=>{
             async function loadData(){
+                if(localStorage.getItem('token') && localStorage.getItem('role')){
+                    setAuthData(localStorage.getItem('token'), localStorage.getItem('role'))
+                }
                 const response = await fetchCategories()
                const itemrResponse= await fetchItems()
                 setCategories(response.data)
@@ -25,13 +46,26 @@ export const AppContextProvider=(props)=>{
             setAuth({token, role})
         }
 
+        const clearCart=()=>{
+            setCartItems([])
+        }
+
  const contextValue={
         Categories,
         setCategories,
         auth,
         setAuthData,
         itemsData,
-        setItemsData
+        setItemsData,
+        addToCart,
+        cartItems,
+        removeFromCart,
+        updateQuantity,
+        clearCart
+
+
+
+       
      }
 
      return(
