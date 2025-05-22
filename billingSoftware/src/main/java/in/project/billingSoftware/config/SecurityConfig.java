@@ -40,7 +40,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/login", "/encode").permitAll()
 						 .requestMatchers("/uploaded-files/**").permitAll()
-						.requestMatchers("/categories", "/items","/orders","/payments").hasAnyRole("ADMIN", "USER")
+						.requestMatchers("/categories", "/items","/orders","/payments","/dashboard").hasAnyRole("ADMIN", "USER")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.anyRequest().authenticated())
 				.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

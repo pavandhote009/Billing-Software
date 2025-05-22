@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
 
 import in.project.billingSoftware.io.PaymentDetails;
@@ -42,10 +43,12 @@ public class OrderEntity {
 	private Double subTotal;
 	private Double tax;
 	private Double grandTotal;
+	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval =true)
 	@JoinColumn(name="order_id")
+	
 	private List<OrderItemEntity> items= new ArrayList<>();
 	 
 	@Embedded

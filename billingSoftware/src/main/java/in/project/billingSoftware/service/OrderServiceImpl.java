@@ -1,9 +1,12 @@
 package in.project.billingSoftware.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Pageable;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import in.project.billingSoftware.entity.OrderEntity;
@@ -126,4 +129,45 @@ public class OrderServiceImpl implements OrderService {
 		return true;
 	}
 
+	@Override
+	public Double sumSalesByDate(LocalDate date) {
+		return orderentityRepository.sumSalesBydate(date);
+	}
+
+	@Override
+	public Long countByorderdate(LocalDate date) {
+		// TODO Auto-generated method stub
+		return orderentityRepository.countByOrderdate(date);
+	}
+
+	@Override
+	public List<OrderResponse> findRecentOrders() {
+	    return orderentityRepository.findRecentOrders(PageRequest.of(0, 5))
+	            .stream()
+	            .map(this::convertToResponse)
+	            .collect(Collectors.toList());
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

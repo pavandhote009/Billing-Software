@@ -27,6 +27,7 @@ public class OrderItemEntity {
 	private String itemId;
 	private String name;
 	private Double price;
+	
 	private Integer quantity;
 	
 }
