@@ -31,9 +31,31 @@ add products, and handle billing efficiently. This project is built with **React
 - MySQL / PostgreSQL
 
 ---
-🙋‍♂️ Author
-Pavan Dhote
 
+## 📸 Screenshots
 
+### 🏠 Home Page
+![Home Page](./screenshots/Dashboard.png)
 
+### 📋 Explore Section
+![Explore Section](./screenshots/Explore.png)
 
+### 🧾 Login Page
+![Login Page](./screenshots/Login.png)
+
+### 🧾 Categories Page
+![Categories Page](./screenshots/manage%20categories.png)
+
+### 🧾 items Page
+![items Page](./screenshots/Manage%20items.png)
+
+### 🧾 Users Page
+![Users Page](./screenshots/Manage%20Users.png)
+
+### 🧾 Order History  Page
+![Order History  Page](./screenshots/OrderHistoroy.png)
+---
+
+## 🙋‍♂️ Author
+
+**Pavan Dhote**
