@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-function Category({ categoryName, imgUrl, numberOfItem, bgColor, onCklick, isSelected }) {
+function Category({ categoryName, imgUrl, numberOfItem, bgColor, onClick, isSelected }) {
   console.log(isSelected);
   
   return (
     <motion.div
-      onClick={onCklick}
+      onClick={onClick}
       style={{ backgroundColor: bgColor, cursor: "pointer" }}
-      className={`flex justify-between h-20 w-44 items-center border border-gray-200 gap-4 p-2 rounded-xl hover:shadow-lg transition-all relative overflow-hidden`}
+      className={`flex justify-between h-16 w-44 items-center border border-gray-200 gap-4 p-2 rounded-sm hover:shadow-lg transition-all relative overflow-hidden`}
       whileHover={{ 
         scale: 1.03,
         boxShadow: "0 10px 20px rgba(0,0,0,0.1)"
@@ -21,7 +21,7 @@ function Category({ categoryName, imgUrl, numberOfItem, bgColor, onCklick, isSel
       {/* Animated background highlight when selected */}
       {isSelected && (
         <motion.div 
-          className="absolute inset-0 bg-white bg-opacity-30"
+          className="absolute inset-0 bg-opacity-30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -58,13 +58,13 @@ function Category({ categoryName, imgUrl, numberOfItem, bgColor, onCklick, isSel
       {/* Animated checkmark when selected */}
       {isSelected && (
         <motion.div
-          className="ml-2"
+          className="-ml-2"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', stiffness: 500 }}
         >
           <svg 
-            className="w-6 h-6 text-green-600" 
+            className="w-6 h-6 text-white stroke-600" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"

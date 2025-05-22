@@ -57,7 +57,7 @@ function ItemList() {
       ) : (
         <div className="overflow-auto max-h-[calc(100vh-200px)] pr-2 space-y-3">
           {filteredItems.map((item) => (
-            <div key={item.itemId} className='w-full bg-slate-700 border border-gray-600 text-white p-3 rounded-lg hover:bg-slate-600 transition-colors'>
+            <div key={item.itemId} className='w-full bg-black border border-gray-600 text-white p-3 rounded-lg hover:bg-slate-600 transition-colors'>
               <div className='flex justify-between items-center gap-4'>
                 <div className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
                   <img 

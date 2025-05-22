@@ -14,10 +14,10 @@ function Explore() {
   console.log(Categories);
   
   return (
-    <div className="flex flex-col h-screen bg-gray-800 lg:flex-row gap-4 p-4">
+    <div className="flex flex-col min-h-full lg:h-screen bg-gray-800 lg:flex-row gap-4 p-4">
       {/* Left Column - 50% on large screens */}
       <div className="flex flex-col w-full  bg-slate-800 border border-gray-100 text-white p-4 rounded-lg">
-        <div className="first-row h-[35%] ">
+        <div className="first-row min-h-[35%] ">
           <DisplayCategory 
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
@@ -25,7 +25,7 @@ function Explore() {
          
         </div>
         <hr className='border-t border-gray-600 my-2' />
-        <div className="second-row h-1/2 overflow-auto">
+        <div className="second-row h-full overflow-auto">
           {/* Your second row content here */}
           <DisplayItems selectedcategory={selectedCategory}/>
           

@@ -75,7 +75,7 @@ function CategoryForm() {
               />
               <label
                 htmlFor="image-upload"
-                className="px-2 py-1 text-xs font-semibold border border-orange-600 text-black rounded-md cursor-pointer hover:bg-blue-700 transition-colors"
+                className="px-2 py-1 text-xs font-semibold border border-orange-600 text-black rounded-md cursor-pointer hover:bg-orange-700 transition-colors"
               >
                 Upload Image
               </label>
@@ -95,7 +95,7 @@ function CategoryForm() {
               onChange={onChangeHandler}
               placeholder="Enter category name"
               required
-              className="w-full px-3 py-1 border placeholder:text-sm border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-1 border placeholder:text-sm border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
 
@@ -111,7 +111,7 @@ function CategoryForm() {
               value={data.description}
               onChange={onChangeHandler}
               placeholder="Enter category description"
-              className="w-full px-3 py-1 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-1 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
 
@@ -134,7 +134,7 @@ function CategoryForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
           >
             {loading ? "Loading..." : "Submit"}
           </button>
